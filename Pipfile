@@ -1,0 +1,8 @@
+[[source]]
+name = "test-pypi"
+url = "https://test.swelljoe.com/simple"
+verify_ssl = true
+
+[packages]
+ep = "==0.1.1"
+pyyaml = "==5.2"
