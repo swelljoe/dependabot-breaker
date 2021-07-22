@@ -11,7 +11,7 @@ updates:
 registries:
   test-pypi:
     type: python-index
-    url: test.swelljoe.com/simple
+    url: https://test.swelljoe.com/simple
     username: ${{secrets.PYPI_USERNAME}}
     password: ${{secrets.PYPI_PASSWORD}}
     replaces-base: true
