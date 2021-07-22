@@ -1,12 +1,9 @@
 version: 2
-env:
-  PYPI_USERNAME: ${{secrets.PYPI_USERNAME}}
-  PYPI_PASSWORD: ${{secrets.PYPI_PASSWORD}}
-
 updates:
   - package-ecosystem: "pip"
     directory: "/"
-    registries: test-pypi
+    registries:
+      - test-pypi
     insecure-external-code-execution: allow
     schedule:
       interval: "daily"
