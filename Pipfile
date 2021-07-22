@@ -1,6 +1,6 @@
 [[source]]
 name = "test-pypi"
-url = "https://test.swelljoe.com/simple"
+url = "https://${PYPI_USERNAME}:${PYPI_PASSWORD}@test.swelljoe.com/simple"
 verify_ssl = true
 
 [packages]
