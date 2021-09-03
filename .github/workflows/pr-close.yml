@@ -1,0 +1,17 @@
+name: pr-close.yml
+on:
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  aptly_remove:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Find this PRs packages
+      id: find
+      run: |
+      echo "DEL_PACKAGES=$(curl --user cloud-build:$APTLY_PASSWD https://aptly.savioke.com/api/repos/savioke-xenial/packages?q=r2c2-core-pr.1237" >> $GITHUB_ENV
+    - name: Delete this PRs packages
+      id: delete
+      run: |
+      curl --user cloud-build:$APTLY_PASSWD -X DELETE -H 'Content-Type: application/json' --data "{\"PackageRefs\": ${DEL_PACKAGES}}" https://aptly.savioke.com/api/repos/savioke-xenial/packages
