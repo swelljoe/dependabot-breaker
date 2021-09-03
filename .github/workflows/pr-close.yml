@@ -11,7 +11,7 @@ jobs:
       env:
         APTLY_PASSWD: ${{ secrets.APTLY_PASSWD }}
       run: |
-        echo "DEL_PACKAGES=$(curl --user cloud-build:$APTLY_PASSWD https://aptly.savioke.com/api/repos/savioke-xenial/packages?q=r2c2-core-pr.1237" >> $GITHUB_ENV
+        echo "DEL_PACKAGES=$(curl --user cloud-build:$APTLY_PASSWD https://aptly.savioke.com/api/repos/savioke-xenial/packages?q=r2c2-core-pr.1237)" >> $GITHUB_ENV
     - name: Delete this PRs packages
       env:
         APTLY_PASSWD: ${{ secrets.APTLY_PASSWD }}
