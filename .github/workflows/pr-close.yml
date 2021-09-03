@@ -6,14 +6,13 @@ on:
 jobs:
   aptly_remove:
     runs-on: ubuntu-latest
+    env:
+      APTLY_USER: ${{ secrets.APTLY_PASSWD }}
+      APTLY_PASSWD: ${{ secrets.APTLY_PASSWD }}
     steps:
     - name: Find this PRs packages
-      env:
-        APTLY_PASSWD: ${{ secrets.APTLY_PASSWD }}
       run: |
         echo "DEL_PACKAGES=$(curl --user $APTLY_USER:$APTLY_PASSWD https://aptly.savioke.com/api/repos/savioke-xenial/packages?q=r2c2-core-pr.1237)" >> $GITHUB_ENV
     - name: Delete this PRs packages
-      env:
-        APTLY_PASSWD: ${{ secrets.APTLY_PASSWD }}
       run: |
         curl --user $APTLY_USER:$APTLY_PASSWD -X DELETE -H 'Content-Type: application/json' --data "{\"PackageRefs\": ${DEL_PACKAGES}}" https://aptly.savioke.com/api/repos/savioke-xenial/packages
